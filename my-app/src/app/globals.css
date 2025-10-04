@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body { @apply bg-black text-neutral-200; }
+
+.body-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.card { @apply rounded-xl border border-white/10 bg-neutral-900/60 backdrop-blur shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_20px_60px_rgba(0,0,0,0.35)]; }
+
+.kbd { @apply inline-flex items-center justify-center rounded-md border border-white/20 px-2 py-0.5 text-xs text-white/80; }
+
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-radar-sweep { animation: radar-sweep 5s linear infinite; }
+
+/* subtle hover lift */
+.hover-lift { transition: transform .25s ease, box-shadow .25s ease; }
+.hover-lift:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.45); }
