@@ -36,10 +36,7 @@ async function ghFetch(
 
   console.log("[github] fetch", url, { requireAuth, hasToken: Boolean(GH_TOKEN) });
 
-  // 1) try with whatever headers we have
   let res = await fetch(url, { ...init, headers, cache: "no-store" });
-
-  // 2) If token caused a 401, retry without Authorization unless auth is required
   if (res.status === 401 && !requireAuth && headers.Authorization) {
     console.log("[github] 401 with token, retrying unauthenticated", url);
     const noAuthHeaders: HeadersInitSafe = { Accept: "application/vnd.github+json" };
