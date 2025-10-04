@@ -441,13 +441,13 @@ export default async function Page({ searchParams }: PageProps) {
 
       <section className="mt-10">
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-xl font-semibold tracking-tight">Projects</h2>
+          <h2 className="text-xl font-semibold tracking-tight">Open Source Projects</h2>
           <div className="text-sm text-white/50">Live data from GitHub • no private repos</div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 items-stretch">
           {repos.map((r, i) => (
-            <div key={r.id} className="hover-lift">
+            <div key={r.id} className="hover-lift h-full">
               <ProjectCard
                 name={r.name}
                 description={r.description}
