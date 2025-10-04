@@ -15,7 +15,8 @@ import { getDemoNumbers } from "@/lib/demo";
 
 export const dynamic = "force-dynamic";
 
-type PageProps = { searchParams: { demo?: string } };
+type PageSearchParams = Record<string, string | string[] | undefined>;
+type PageProps = { searchParams?: Promise<PageSearchParams> };
 
 type ExperienceItem = {
   role: string;
@@ -67,7 +68,11 @@ function toMonthlySeries(days: { date: string; count: number }[]): SeriesPoint[]
 }
 
 export default async function Page({ searchParams }: PageProps) {
-  const isDemo = Boolean(searchParams?.demo);
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const demoParam = Array.isArray(resolvedSearchParams?.demo)
+    ? resolvedSearchParams?.demo[0]
+    : resolvedSearchParams?.demo;
+  const isDemo = Boolean(demoParam);
   const demo = getDemoNumbers(isDemo);
 
   const user = await fetchUser();

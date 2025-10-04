@@ -21,9 +21,14 @@ export default function AnimatedNumber({
   const startRef = React.useRef<number | null>(null);
   const fromRef = React.useRef<number>(0);
   const toRef = React.useRef<number>(value);
+  const displayRef = React.useRef<number>(0);
 
   React.useEffect(() => {
-    fromRef.current = display;
+    displayRef.current = display;
+  }, [display]);
+
+  React.useEffect(() => {
+    fromRef.current = displayRef.current;
     toRef.current = value;
     startRef.current = null;
 

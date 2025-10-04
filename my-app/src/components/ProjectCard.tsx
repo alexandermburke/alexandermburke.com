@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
 
 type ProjectCardProps = {
@@ -25,9 +24,14 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <div className="card p-5 hover:shadow-lg hover:shadow-black/30 transition-shadow duration-300">
       <div className="flex items-center justify-between">
-        <Link href={htmlUrl} className="text-lg font-semibold hover:text-accent">
+        <a
+          href={htmlUrl}
+          className="text-lg font-semibold hover:text-accent"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {name}
-        </Link>
+        </a>
         <div className="text-xs text-white/50">Updated {new Date(updatedAt).toLocaleDateString()}</div>
       </div>
 
@@ -39,7 +43,9 @@ export default function ProjectCard(props: ProjectCardProps) {
         <span className="kbd">⑂ {forks}</span>
         <span className="kbd">⎇ {commits} commits</span>
         {homepage ? (
-          <Link className="kbd hover:text-accent" href={homepage} target="_blank">Live</Link>
+          <a className="kbd hover:text-accent" href={homepage} target="_blank" rel="noopener noreferrer">
+            Live
+          </a>
         ) : null}
       </div>
 
